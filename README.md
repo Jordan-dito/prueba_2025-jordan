@@ -48,7 +48,7 @@ $ npm run start:prod
 
  todo-backend
 
-## Configuración de la Base de Datos
+## Esta parte debe agregarse en un archivo .env
 
 A continuación se muestra la configuración de la base de datos que se utiliza en este proyecto:
 DB_HOST=localhost # Docker mapea el puerto 3306 en localhost
