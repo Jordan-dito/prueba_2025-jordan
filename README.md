@@ -58,6 +58,20 @@ DB_PASSWORD=root # Contraseña configurada al iniciar el contenedor
 DB_NAME=todo_app # Nombre de la base de datos
 JWT_SECRET=mysecretkey
 
+
+ Ejecución del Proyecto
+
+1️⃣ Iniciar la Base de Datos con Docker
+
+Si no tienes MySQL instalado, puedes ejecutar este comando para iniciarlo en Docker:
+
+$ docker run --name mysql-container -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=todo_app -p 3306:3306 -d mysql:5.7
+
+📖 Documentación con Swagger
+
+Una vez que la aplicación esté corriendo, accede a la documentación interactiva de Swagger:
+👉 http://localhost:3000/api/docs
+
 ## Run tests
 
 ```bash
