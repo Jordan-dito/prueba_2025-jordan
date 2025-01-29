@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 import { TasksModule } from './tasks/tasks.module'; // Importa tu módulo de tareas
+import { AuthModule } from './auth/auth.module'; // Importa tu módulo de autenticación
 import { AppController } from './app.controller'; // Controlador general
 import { AppService } from './app.service'; // Servicio general
 
@@ -31,6 +32,9 @@ dotenv.config();
 
     // Importa el módulo de tareas
     TasksModule,
+
+    // Importa el módulo de autenticación
+    AuthModule,
   ],
   controllers: [AppController], // Controladores generales
   providers: [AppService], // Servicios generales

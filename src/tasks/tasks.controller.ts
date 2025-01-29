@@ -8,17 +8,24 @@ import {
   Body,
   UseGuards,
 } from '@nestjs/common';
-import { ApiBody, ApiParam, ApiTags, ApiOperation } from '@nestjs/swagger';
+import {
+  ApiBody,
+  ApiParam,
+  ApiTags,
+  ApiOperation,
+  ApiBearerAuth,
+} from '@nestjs/swagger';
 import { TasksService } from './tasks.service';
 import { Task } from './task.entity';
-// import { JwtAuthGuard } from '../auth/jwt-auth.guard'; // Comentado para deshabilitar la validación de token
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 
 @ApiTags('tasks') // Etiqueta para agrupar los endpoints en Swagger
 @Controller('tasks')
+@ApiBearerAuth() // Añade autenticación con Bearer JWT a todos los endpoints del controlador
 export class TasksController {
   constructor(private readonly tasksService: TasksService) {}
 
-  // @UseGuards(JwtAuthGuard) // Comentado para deshabilitar la validación de token
+  @UseGuards(JwtAuthGuard) // Protege el endpoint con JWT
   @Get()
   @ApiOperation({
     summary: 'Obtener todas las tareas',
@@ -28,7 +35,7 @@ export class TasksController {
     return this.tasksService.findAll();
   }
 
-  // @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard)
   @Get(':id')
   @ApiOperation({
     summary: 'Obtener una tarea por ID',
@@ -43,7 +50,7 @@ export class TasksController {
     return this.tasksService.findOne(id);
   }
 
-  // @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard)
   @Post()
   @ApiOperation({
     summary: 'Crear una nueva tarea',
@@ -54,7 +61,7 @@ export class TasksController {
     return this.tasksService.create(task);
   }
 
-  // @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard)
   @Put(':id')
   @ApiOperation({
     summary: 'Actualizar una tarea existente',
@@ -70,7 +77,7 @@ export class TasksController {
     return this.tasksService.update(id, task);
   }
 
-  // @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard)
   @Delete(':id')
   @ApiOperation({
     summary: 'Eliminar una tarea existente',
